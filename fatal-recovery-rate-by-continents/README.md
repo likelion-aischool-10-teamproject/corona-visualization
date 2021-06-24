@@ -3,7 +3,7 @@
 - __MEMBERS__ : Donghwa @dddonghwa, Minhyuk @BREAD-choi
 - __SUBJECT__ : Visualization of Fatal & Recovery Rate by Continents 
 - __COMPONENTS__ : 
-    - 'team-project-01-02.ipynb/md' : source code + description 🙋‍♀️ READ MD FILE!
+    - 'team-project-01-02.ipynb/md' : source code + description ⭐️ READ MD FILE!
     - 'corona_today.csv' : corona data from coronaboard
     - 'wiki.csv' : a list of countries and continents from wikipedia
     - 'corona_total.csv' : added continents to corona_today
