@@ -1,2 +1,17 @@
 # corona-visualization
 project 01
+
+__TEAM 01. GDP 상위 7개국, 하위 7개국의 코로나 발생 현황__   
+- MEMBER : 김남은 @DestinyKim
+- REPOSITORY : GDP-top-7-countries
+
+__TEAM 02. 대륙별 치명률과 회복률__  
+- MEMBER : 김동화 @dddonghwa 최민혁 @Bread-choi
+- REPOSITORY NAME : fatal-recovery-rate-by-continents
+
+
+__TEAM 03. 국내 지역별 인구대비 확진자 지도__
+- MEMBER : 김민수 @tlqpffls
+- REPOSITORY NAME : korea_corona_confirmer_visualization
+
+

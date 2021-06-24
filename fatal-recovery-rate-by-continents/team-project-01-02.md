@@ -1,4 +1,4 @@
-last update : 2021.06.23
+last update : 2021.06.24
 
 #### Team Project 01 by 김동화, 최민혁
 # 대륙별 코로나 사망률과 완치률
@@ -22,15 +22,17 @@ cf. 사망률 = 사망자수/확진자수, 완치률 = 완치자수/확진자수
 
 ## 결과
 
-result.png![result.png](attachment:result.png)
-
-## 해석 및 향후 개성 사항
-- 아프리카, 오세아니아, 유럽은 비슷한 수준의 사망률을 보인다.
-- 아메리카는 다른 대륙에 비해 높은 사망률을 보인다. 북아메리카의 미국과 캐나다의 사망률이 1.8과 1.9인 것에 비해서 다소 높은 수치가 나왔기 때문에 어떠한 이유에서 이러한 결과가 나왔는지 살펴볼 필요가 있다. 특정 국가의 사망률이 높은 건지, 골고루 높은 건지 등 분포를 알기 위해서 분산을 계산해보면 좋을 것 같다.
-- 그 외에 속한 나라들을 보면 속국이 많다. 소속국가인 프랑스보다 훨씬 더 낮은 완치률을 보이는 것을 알 수 있다. 완치률에 영향을 주는 여러 요인이 있겠지만 의료시설이 잘 되어있지 않다는 유추해볼 수 있다. 이들 국가에 대한 정보를 찾아보면 더 정확한 해석이 가능할 것 같다.
-- 사망률과 완치율의 음의 상관계수를 계산해보면 좋을 것 같다. 시각화 결과를 통해서는 사망률이 높을수록 완치율이 낮다는 것을 정확하게 확인하기는 어려웠다.
+result.png![result.png](./result.png)
 
 
+
+
+## 해석 및 향후 개선 사항
+- 치명률에 비해 완치율의 분산이 크기 때문에 대륙에 따라서 완치율이 달라질 수 있다고 말할 수 있다.  
+- 치명률과 완치율의 양상이 비슷하지 하지 않은 것으로 보았을 때 대륙별로 백신 보급, 의료환경 등 인위적이고 대륙마다 독립적인 요소들에 영향을 받았을 것으로 예상해볼 수 있다.  
+- 전세계 백신 보급 현황 [링크](https://www.bbc.com/korean/features-56066227) 을 보았을 때 유럽 국가와 북아메리카의 보급률이 다른 국가에 비해 높은 것으로 확인되었다. 그럼에도 불구하고 완치율에 차이가 나는 것은 유럽에 비해 북아메리카의 의료 시설에 대한 접근성 등과 같은 대륙적 요소들의 영향을 끼쳤다고 생각해볼 수 있다.  
+- 의료 후진국을 많이 포함하고 있는 아프리카 대륙의 치명률이 높을 것으로 예상하였지만, 다른 대륙들과 비슷한 수준의 치명률과 완치률을 가진 것으로 보아 인간의 면역체계와 백신 보급 등과 같은 국제적인 협조가 잘 작동하고 있다고 생각할 수 있다.   
+- 사망률과 완치율은 서로 음의 상관관계를 가질 것으로 예상하였지만 분석해본 결과 그렇지는 않았다.  
 
 ### 1. 국가별 코로나 사망률, 완치율 
 임동조 강사님 unit08_corona_01_today 파일 참고
@@ -938,9 +940,9 @@ dict_dat
 
 
 
-### 2. 국가와 대륙 (by 최민혁)
-
-*국가와 대륙 데이터를 f_name2로 저장하기*
+### 2. 국가와 대륙
+`BeautifulSoup`을 이용하여 위키백과의 대륙별 국가 목록을 수집하였습니다. 모든 국가의 목록을 가져와 그 국가가 속한 대륙을 수작업으로 추가하였습니다.
+- 파일명 : *wiki.csv* (`f_name2` 객체에 저장)
 
 
 ```python
@@ -952,15 +954,9 @@ soup = BeautifulSoup(page, 'html.parser')
 
 ```python
 name=soup.select('div.mw-parser-output>ul>li>a')
-# len(name)
-
+name_list = []
 for one in name:
-    print(one.text)
-```
-
-
-```python
-f_name2 = "wiki.csv"
+    name_list.append(one.text)
 ```
 
 ###  3. 국가별 사망률, 완치률, 대륙 정보를 DataFrame으로 묶기
@@ -1489,7 +1485,7 @@ data1.to_csv(f_name3, index=False)
 
 
 ```python
-# f_name3 = "corona_total.csv"
+f_name3 = "corona_total.csv"
 data_all = pd.read_csv(f_name3)
 data_all
 ```
@@ -1736,40 +1732,198 @@ grp_mean
 
 
 ### 5. 시각화
+#### 1) matplotlib 한글 패치
 
 
 ```python
-x = ["Others","America","Asia","Africa","Oceania","Europe"]
-y1 = [0.860000, 2.823077, 1.684444,2.112121,2.000000,2.051282]
-y2 = [51.640000, 84.272000, 88.395556, 88.615152, 96.400000, 94.081081]
+from matplotlib import font_manager, rc
+import platform
+```
+
+
+```python
+path = "C:/Windows/Fonts/malgun.ttf" 
+if platform.system() == "Windows":
+    font_name = font_manager.FontProperties(fname=path).get_name()
+    rc('font', family=font_name) 
+elif platform.system()=="Darwin":
+    rc('font', family='AppleGothic') 
+else:
+    print("Unknown System") 
+    matplotlib.rcParams['axes.unicode_minus'] = False
+```
+
+#### 2) 대륙별 치명률과 완치률 plot
+
+
+```python
+x = grp_mean.index
+y1 = grp_mean["치명(%)"]
+y2 = grp_mean["완치(%)"]
 ```
 
 
 ```python
 fig = plt.figure(figsize=(7,7))
+
 ax1 = fig.add_subplot(211)
 ax1.plot(x,y1, 'o-')
 ax1.set_ylabel("Fatal Rate [%]")
 ax1.grid()
+ax1.set_ylim(0,10)
+
 ax2 = fig.add_subplot(212)
 ax2.plot(x,y2, 'o-')
 ax2.set_ylabel("Recovery Rate [%]")
 ax2.grid()
+ax2.set_ylim(70, 100)
 ```
+
+
+
+
+    (70.0, 100.0)
+
+
+
+
+    
+![png](output_43_1.png)
+    
+
+
+#### 3)  상관관계
+- 예상 : 완치률이 높을수록 사망률은 낮게 나오지 않을까하여 음의 상관관계를 예상
+- 결과 : 치명률과 완치율은 음의 상관관계를 가지지는 않는다.
+
+
+```python
+grp_mean.corr()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>치명(%)</th>
+      <th>완치(%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>치명(%)</th>
+      <td>1.000000</td>
+      <td>0.170052</td>
+    </tr>
+    <tr>
+      <th>완치(%)</th>
+      <td>0.170052</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+#### 4) 통계치
+- 시각화 결과를 통해서 완치율의 분포가 치명률보다 더 고르게 나타나는 것을 확인할 수 있었다. 데이터의 통계치를 확인해본 결과 완치율의 분산이 치명률보다 약 11배 정도 높았다. 따라서 대륙에 따라서 완치율이 달라질 수 있다고 이야기할 수 있겠다.
+
+
+```python
+grp_mean.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>치명(%)</th>
+      <th>완치(%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>7.000000</td>
+      <td>7.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.033471</td>
+      <td>85.323831</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.522073</td>
+      <td>6.161759</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.350000</td>
+      <td>75.908333</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.767772</td>
+      <td>82.150000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.988372</td>
+      <td>86.242857</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>2.190189</td>
+      <td>88.166348</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2.980000</td>
+      <td>94.482927</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
 
 ```python
-import pandas as pd
-y = {"Fatal Rate":y1, "Recovery Rate":y2}
-y = pd.DataFrame(y)
-y
+
 ```
-
-
-```python
-y.corr() 
-```
-
-음의 상관관계가 나오긴 하나?
