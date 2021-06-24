@@ -1,7 +1,7 @@
 # corona-visualization
 project 01
 
-__TEAM 01. GDP 상위 7개국, 하위 7개국의 코로나 발생 현황__   
+__TEAM 01. 치명률/회복률과 GDP와의 상관관계__   
 - MEMBER : 김남은 @DestinyKim
 - REPOSITORY : GDP-top-7-countries
 
