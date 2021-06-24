@@ -32,7 +32,7 @@ result.png![result.png](attachment:result.png)
 
 
 
-### 1. 국가별 코로나 사망률, 완치율 (by 김동화)
+### 1. 국가별 코로나 사망률, 완치율 
 임동조 강사님 unit08_corona_01_today 파일 참고
 
 
