@@ -1,9 +1,9 @@
 # corona-visualization
 project 01
 
-__TEAM 01. GDP와 치명률/회복률의 상관관계__   
+__TEAM 01. GDP와 회복률의 상관관계__   
 - MEMBER : 김남은 @DestinyKim
-- REPOSITORY : 01. 01. corrleation-between-GDP-corona
+- REPOSITORY : 01. 01. corrleation-between-GDP-and-recovery-rate
 
 __TEAM 02. 대륙별 치명률과 회복률__  
 - MEMBER : 김동화 @dddonghwa 최민혁 @Bread-choi
