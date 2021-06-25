@@ -27,8 +27,7 @@
 ###### 6) 시각화 한다.
 
 ## 결과 >
-
-![result](C:\Users\Jongho\Documents\Practice)
+<img src = "https://user-images.githubusercontent.com/39752251/123351742-c8783b00-d598-11eb-8446-7e97e8b43da8.png" width="50%">
 
 ## 해석 및 향후 개선 사항 >
 
