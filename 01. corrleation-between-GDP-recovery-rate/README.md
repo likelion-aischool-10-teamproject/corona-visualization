@@ -1,9 +1,3 @@
-# Correlation between GDP and Fatal/Recovery Rate
-- __DATE__ : 2021.06.21~06.24
-- __MEMBERS__ : Nameun @DestinyKim
-- __SUBJECT__ : Correlation between GDP and fatal/recovery rate
-
-
 # GDP 상위 7개 국가와 코로나 국가 간의 상관관계
 
 ## 목표 >
