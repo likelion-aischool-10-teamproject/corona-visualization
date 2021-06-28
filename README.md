@@ -16,7 +16,7 @@ __TEAM 03. 국내 지역별 인구대비 확진자 지도__
 - REPOSITORY NAME : 03. korea-corona-confirmer-visualization
 
 
-## Feedback : Personal Project
+## 피드백 : 개인 프로젝트 방식에 관하여
 - 본인의 약점과 강점 파악에 도움
 - 막히는 부분이 있을 때 다른 팀원의 도움을 받기 힘듦
 - 하나의 주제를 가지고 각자 코드를 짜고 가장 좋은 코드를 선택하는 방식으로 진행하면 좋을 듯
