@@ -1,5 +1,6 @@
-# corona-visualization
-project 01
+project 01. corona-visualization
+# 코로나 실시간 정보 시각화
+
 
 __TEAM 01. GDP와 회복률의 상관관계__   
 - MEMBER : 김남은 @DestinyKim
